@@ -13,7 +13,7 @@ namespace ConsoleUI
             //ProductTest();
             //CategoryGetByIdTest();
 
-            ProductManager productManager = new ProductManager(new EfProductDal());
+            ProductManager productManager = new ProductManager(new EfProductDal(),new CategoryManager(new EfCategoryDal()) );
             var result = productManager.GetAll();
             if (result.Success == true)
             {
@@ -32,13 +32,13 @@ namespace ConsoleUI
         private static void CategoryGetByIdTest()
         {
             CategoryManager categoryManager = new CategoryManager(new EfCategoryDal());
-
-            Console.WriteLine(categoryManager.GetById(2).CategoryName);
+            
+            Console.WriteLine(categoryManager.GetById(2).Data.CategoryName);
         }
 
         private static void ProductTest()
         {
-            ProductManager productManager = new ProductManager(new EfProductDal());
+            ProductManager productManager = new ProductManager(new EfProductDal(), new CategoryManager(new EfCategoryDal()));
             var result = productManager.GetProductDetails();
             if(result.Success== true)
             {
