@@ -17,7 +17,7 @@ namespace DataAccess.Concrete.EntityFramework
         {
             using (NorthwindContext context = new NorthwindContext())
             {
-                 var result = from p in context.Products join c in context.Categories on p.CategoryID equals c.CategoryID select new ProductDetailDto { 
+                 var result = from p in context.Products join c in context.Categories on p.CategoryID equals c.CategoryId select new ProductDetailDto { 
                 ProductId= p.ProductID,
                 ProductName= p.ProductName,
                 CategoryName=c.CategoryName,

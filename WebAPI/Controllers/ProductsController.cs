@@ -26,7 +26,7 @@ namespace WebAPI.Controllers
         [HttpGet("getall")]// burada getler karışmasın diye getall ismini verdik 
         public IActionResult GetAll()
         {
-            Thread.Sleep(1000);
+            Thread.Sleep(500);
             
             var result= _productService.GetAll();
             if (result.Success == true)
@@ -41,6 +41,16 @@ namespace WebAPI.Controllers
         public IActionResult GetById(int id)
         {
             var result = _productService.GetById(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest(result);
+        }
+        [HttpGet("getbycategoryid")]
+        public IActionResult GetByCategoryId(int categoryId)
+        {
+            var result = _productService.GetAllByCategoryId(categoryId);
             if (result.Success)
             {
                 return Ok(result);
